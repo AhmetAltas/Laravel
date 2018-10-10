@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Eloquent\Model;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,12 +12,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-      /*  factory(App\Project::class, 10)->create()->each(function ($p) {
-        	$p->users()->save(factory(App\User::class)->make());
-        	$p->users()->save(factory(App\User::class)->make());
-        	$p->users()->save(factory(App\User::class)->make());
-        	$p->users()->save(factory(App\User::class)->make());
-            $p->users()->save(factory(App\User::class)->make());
-    }); */  
+      $this->call([
+        CategorySeeder::class,
+        ProductSeeder::class,
+      ]);
 }
 }
