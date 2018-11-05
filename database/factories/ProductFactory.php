@@ -8,7 +8,7 @@ $factory->define(App\Product::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'description' => $lorem->words(10,true),
-        'price' => $faker->numberBetween(1 ,20),
+        'price' => $faker->biasednumberBetween(1 ,20),
         'category_id' => $faker->biasedNumberBetween($min = 1, $max = 5, $function = 'sqrt'),
     ];
 });

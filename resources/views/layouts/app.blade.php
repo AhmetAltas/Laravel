@@ -25,7 +25,7 @@
      <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
-    <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{asset('css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{asset('css/bootstrap-grid.css') }}" rel="stylesheet">
@@ -59,6 +59,10 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/products') }}">{{ __('Products') }}</a>
+                            </li>
                             </li>
                         @else
                             <li class="nav-item dropdown">

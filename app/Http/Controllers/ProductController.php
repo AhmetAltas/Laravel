@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\Category;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -14,7 +15,15 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $result = Category::with('products')->find('id');
+
+    return view('products.index', ['products' => Product::paginate(10), 'result' => $result]);
+    //
+    }
+
+    public function getArticle(Product $product)
+    {
+        return view('products.getArticle', ['product' => $product]);  
     }
 
     /**

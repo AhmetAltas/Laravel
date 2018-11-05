@@ -12,7 +12,7 @@
                             <ul>
                             @foreach($categories as $category)
                                 
-                                <li><a href="{{url('categories/'.$category['id'])}}">{{$category->name}}</a></li>
+                                <li class="listing"><a href="{{url('categories/'.$category['id'])}}">{{$category->name}}</a></li>
                                 
                             @endforeach
                             </ul>

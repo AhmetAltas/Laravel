@@ -22,7 +22,7 @@ class CategoryController extends Controller
         "Description" => $category->$category_description,
          ];
      }*/
-     return view('category', compact('categories'));   //
+     return view('categories.category', compact('categories'));   //
     }
 
     /**
