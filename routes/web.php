@@ -15,10 +15,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/products', 'ProductController@index')->name('products.index');
+Route::get('/add-to-cart/{id}', 'ProductController@getAddToCart')->name('products.addToCart');
+Route::get('/shopping-cart', 'ProductController@getCart')->name('products.shoppingCart');
+Route::get('/reduce/{id}', 'ProductController@reduceByOne')->name('products.reduceByOne');
+Route::get('/remove/{id}', 'ProductController@removeItem')->name('products.removeItem');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-//Route::get('/products', 'ProductController@index')->name('Products');
+
+
+
 Route::get('/products/{id}', 'ProductController@getArticle')->name('Product');
+
 Route::resource('products', 'ProductController');
+
 Route::get('/categories', 'CategoryController@index')->name('Categories');

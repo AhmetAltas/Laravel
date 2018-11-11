@@ -17,8 +17,8 @@
 		</thead>
 		<tbody>
 		<tr>
-			<th scope="row">{{ $product->id }}</th>
-			<td>{{ $product->name }}</td>
+			<th scope="row">{{$product['id']}}</th>
+			<td>{{$product['name']}}</td>
 		</tr>
 		</tbody>
 	</table>
