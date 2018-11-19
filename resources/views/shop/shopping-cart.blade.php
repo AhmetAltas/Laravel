@@ -7,7 +7,7 @@
 @section('content')
     @if(Session::has('cart'))
         <div class="row">
-            <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+            <div class="container">
                 <ul class="list-group">
                     @foreach($items as $item)
                             <li class="list-group-item">
@@ -27,19 +27,22 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
-                <strong>Total: {{ $totalPrice }}</strong>
+            <div class="container">
+
+                <strong>Total: € {{ $totalPrice }}</strong>
             </div>
         </div>
         <hr>
         <div class="row">
-            <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
-                <button type="button" class="btn btn-success">Afronden</button>
+            <div class="container">
+                <form action="{{ route('checkout') }}" method="post">
+                @csrf
+                <button type="submit" class="btn btn-success">Afronden</button>
             </div>
         </div>
     @else
         <div class="row">
-            <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+            <div class="container">
                 <h2>No Items in Cart!</h2>
             </div>
         </div>

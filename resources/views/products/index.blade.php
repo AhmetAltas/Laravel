@@ -39,12 +39,8 @@
             <tr>
                 <th scope="row">{{ $product->id }}</th>
                 <td>{{ $product->name }}</td>
-                <td>€{{ $product->price}}</td>
-<<<<<<< HEAD
-                <td><a class="btn btn-success" href="{{route('products.get', ['id' => $product->id])}}" role="button">View</a></td>
-=======
-                <td><a class="btn btn-success" href="{{route('Product', ['id' => $product->id])}}" role="button">View</a></td>
->>>>>>> b40858d557168055ba36172ea2c46672f750dc63
+                <td>€{{ $product->price}}</td>                
+                <td><a class="btn btn-success" href="{{route('products.getArticle', ['id' => $product->id])}}" role="button">View</a></td>
                 <td><a href="{{route('products.addToCart', ['id' => $product->id])}}" role="button">Add</a></td>
                 <!--<td>
                     <form action="#" method="post">

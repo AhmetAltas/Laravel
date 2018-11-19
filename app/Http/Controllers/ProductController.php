@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use App\Product;
 use App\Cart;
 use App\Category;
+use App\Order;
+use Auth;
+use App\Http\Requests;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Session;
 
 class ProductController extends Controller
@@ -17,24 +21,42 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $result = Category::with('products')->find('id');
 
-    return view('products.index', ['products' => Product::paginate(10), 'result' => $result]);
+    return view('products.index', ['products' => Product::paginate(10)]);
     //
     }
 
     public function getArticle($id)
     {
         $product = Product::find($id);
-        return view('products.getArticle', ['product' => $product]);  
+    
+    return view('products.getArticle', ['product' => $product]);  
     }
 
     public function getCategory($category_id)
     {
-        $products = Product::where('category_id', $category_id)->get();
-        return view('products.index', ['products' => $products]);
+        $products = Product::where('category_id', $category_id)->paginate(10);
+    
+    return view('products.index', ['products' => $products]);
     }
 
+    public function storeCheckout(Request $request)
+    {
+        if (!Session::has('cart')) {
+            return redirect()->route('shop.shoppingCart');
+        }
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
+        try {
+            $order = new Order();
+            $order->cart = serialize($cart);
+            Auth::user()->orders()->save($order);
+        } catch (\Exception $e) {
+        return redirect()->route('checkout')->with('error', $e->getMessage());
+        }
+        Session::forget('cart');
+        return redirect()->route('products.index')->with('success', 'Bestelling is gelukt!');
+    }
     /**
      * Show the form for creating a new resource.
      *

@@ -18,11 +18,8 @@
 		<tbody>
 		<tr>
 			<th scope="row">{{$product['id']}}</th>
-<<<<<<< HEAD
 			<th>{{$product['price']}}</th>
-=======
 			<td>{{$product['name']}}</td>
->>>>>>> b40858d557168055ba36172ea2c46672f750dc63
 		</tr>
 		<h5>{{$product['description']}}</h5>
 		</tbody>

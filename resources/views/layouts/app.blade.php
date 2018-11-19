@@ -64,9 +64,15 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/products') }}">{{ __('Products') }}</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/categories') }}">{{ __('Categories') }}</a>
+                            </li>
                         @else
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/products') }}">{{ __('Products') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/categories') }}">{{ __('Categories') }}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('products.shoppingCart') }}">Shoppping Cart
@@ -80,6 +86,9 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('orders') }}">
+                                        {{ __('Orders') }}
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

@@ -5,21 +5,24 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Categories</div>
-
-                <div class="card-body">
-                        <div class="alert alert-success" role="alert">
-                            <ul>
-                        @foreach($categories as $category)
-                        <li>{{$category->category_name}} - {{$category->products}}</li>
-                        @endforeach
-                            </ul>
-                        </div>
-
-                    Categories
-                </div>
+                <h1>Categories</h1>
+                    <div class="row">
+                        <table class="table table-bordered">        
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Category</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($categories as $category)
+                    <tr>
+                        <td>{{$category->category_name}}</td>
+                            </form>
+                        </td>
+                    </tr>
+                    @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
-    </div>
-</div>
 @endsection
