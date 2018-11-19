@@ -10,8 +10,8 @@
                 <div class="card-body">
                         <div class="alert alert-success" role="alert">
                             <ul>
-                            @foreach($categories as $category)
-                                <li class="listing"><a href="{{route('products.getCategory', ['id' => $category->id])}}">{{$category->name}}</a></li>
+                            @foreach($products as $product)
+                                <li class="listing">{{$product->name}}</li>
                                 
                             @endforeach
                             </ul>

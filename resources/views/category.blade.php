@@ -14,8 +14,6 @@
                         <li>{{$category->category_name}} - {{$category->products}}</li>
                         @endforeach
                             </ul>
-
-
                         </div>
 
                     Categories

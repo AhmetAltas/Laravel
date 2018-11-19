@@ -14,11 +14,18 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('/home', 'HomeController@index')->name('home');
+//Product
+Route::get('/products', 'ProductController@index')->name('products.index');
+Route::get('/shopping-cart', 'ProductController@getCart')->name('products.shoppingCart');
+Route::get('/reduce/{id}', 'ProductController@reduceByOne')->name('products.reduceByOne');
+Route::get('/remove/{id}', 'ProductController@removeItem')->name('products.removeItem');
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-//Route::get('/products', 'ProductController@index')->name('Products');
-Route::get('/products/{id}', 'ProductController@getArticle')->name('Product');
+Route::get('/products/{id}', 'ProductController@getArticle')->name('products.getArticle');
 Route::resource('products', 'ProductController');
+Route::get('/product/category/{id}', 'ProductController@getCategory')->name('products.getCategory');
+Route::get('/add-to-cart/{id}', 'ProductController@getAddToCart')->name('products.addToCart');
+//Category
 Route::get('/categories', 'CategoryController@index')->name('Categories');
+Route::get('/categories/{id}', 'CategoryController@getCategory')->name('categories.getCategory');

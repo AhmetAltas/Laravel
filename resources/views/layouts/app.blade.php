@@ -32,6 +32,7 @@
     <link href="{{asset('css/bootstrap-grid.min.css') }}" rel="stylesheet">
     <link href="{{asset('css/bootstrap-reboot.css') }}" rel="stylesheet">
     <link href="{{asset('css/bootstrap-reboot.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
 <body>
     <div id="app">
@@ -63,8 +64,16 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/products') }}">{{ __('Products') }}</a>
                             </li>
-                            </li>
                         @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/products') }}">{{ __('Products') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('products.shoppingCart') }}">Shoppping Cart
+                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                 <span class="badge">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }}</span>
+                                </a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>

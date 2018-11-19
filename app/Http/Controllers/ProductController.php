@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\Cart;
 use App\Category;
 use Illuminate\Http\Request;
+use Session;
 
 class ProductController extends Controller
 {
@@ -21,9 +23,16 @@ class ProductController extends Controller
     //
     }
 
-    public function getArticle(Product $product)
+    public function getArticle($id)
     {
+        $product = Product::find($id);
         return view('products.getArticle', ['product' => $product]);  
+    }
+
+    public function getCategory($category_id)
+    {
+        $products = Product::where('category_id', $category_id)->get();
+        return view('products.index', ['products' => $products]);
     }
 
     /**
@@ -91,4 +100,51 @@ class ProductController extends Controller
     {
         //
     }
+
+    public function getAddToCart(Request $request, $id)
+    {
+        $product = Product::find($id);
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->add($product, $id);
+        $request->session()->put('cart', $cart);
+        return redirect()->route('products.index');
+    }
+
+    public function reduceByOne($id)
+    {
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->reduceByOne($id);
+        if (count($cart->items) > 0) {
+            Session::put('cart', $cart);
+        } else {
+            Session::forget('cart');
+        }
+        return redirect()->route('products.shoppingCart');
+    }
+
+    public function removeItem($id)
+    {
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->removeItem($id);
+        if (count($cart->items) > 0) {
+            Session::put('cart', $cart);
+        } else {
+            Session::forget('cart');
+        }
+        return redirect()->route('products.shoppingCart');
+    }
+
+    public function getCart() 
+    {
+        if (!Session::has('cart')) {
+            return view('shop.shopping-cart');
+        }
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
+        return view('shop.shopping-cart', ['items' => $cart->items, 'totalPrice' => $cart->totalPrice]);
+    }
+
 }

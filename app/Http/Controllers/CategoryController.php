@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Product;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -23,6 +24,12 @@ class CategoryController extends Controller
          ];
      }*/
      return view('categories.category', compact('categories'));   //
+    }
+
+    public function getCategory($category)
+    {
+     $products = Product::where('category_id', $category);
+     return view('categories.category-product', ['products' => $products]);
     }
 
     /**

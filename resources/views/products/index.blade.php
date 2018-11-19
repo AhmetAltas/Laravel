@@ -30,6 +30,7 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Product Name</th>
+                    <th colspan="2">Price</th>
                     <th colspan="3">Action</th>
                 </tr>
             </thead>
@@ -38,8 +39,9 @@
             <tr>
                 <th scope="row">{{ $product->id }}</th>
                 <td>{{ $product->name }}</td>
-                <td><a class="btn btn-success" href="{{route('Product', ['id' => $product->id])}}" role="button">View</a></td>
-                <td><a href="#" role="button">Add</a></td>
+                <td>€{{ $product->price}}</td>
+                <td><a class="btn btn-success" href="{{route('products.get', ['id' => $product->id])}}" role="button">View</a></td>
+                <td><a href="{{route('products.addToCart', ['id' => $product->id])}}" role="button">Add</a></td>
                 <!--<td>
                     <form action="#" method="post">
                         @csrf
