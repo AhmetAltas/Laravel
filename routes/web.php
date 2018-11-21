@@ -19,16 +19,15 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/orders','HomeController@getOrders')->name('orders');
 //Cart
 Route::get('/products', 'ProductController@index')->name('products.index');
-Route::get('/add-to-cart/{id}', 'ProductController@getAddToCart')->name('products.addToCart');
-Route::get('/shopping-cart', 'ProductController@getCart')->name('products.shoppingCart')->middleware('auth');
-Route::get('/add-to-cart/{id}', 'ProductController@getAddToCart')->name('products.addToCart');
-Route::get('/reduce/{id}', 'ProductController@reduceByOne')->name('products.reduceByOne');
-Route::get('/remove/{id}', 'ProductController@removeItem')->name('products.removeItem');
-Route::post('/checkout', 'ProductController@storeCheckout')->name('checkout');
+Route::get('/add-to-cart/{id}', 'OrderController@getAddToCart')->name('orders.addToCart');
+Route::get('/shopping-cart', 'OrderController@getCart')->name('orders.shoppingCart')->middleware('auth');
+Route::get('/reduce/{id}', 'OrderController@reduceByOne')->name('orders.reduceByOne');
+Route::get('/remove/{id}', 'OrderController@removeProduct')->name('orders.removeProduct');
+Route::post('/checkout', 'OrderController@storeCheckout')->name('checkout');
 //Product
 Route::get('/products/{id}', 'ProductController@getArticle')->name('products.getArticle');
 Route::resource('products', 'ProductController');
-Route::get('/products/category/{id}', 'ProductController@getCategory')->name('products.getCategory');
+Route::get('/products/category/{id}', 'CategoryController@getCategory')->name('orders.getCategory');
 Route::resource('products', 'ProductController');
 //Category
 Route::get('/categories', 'CategoryController@index')->name('Categories');

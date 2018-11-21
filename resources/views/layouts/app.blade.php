@@ -75,7 +75,7 @@
                                 <a class="nav-link" href="{{ url('/categories') }}">{{ __('Categories') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('products.shoppingCart') }}">Shoppping Cart
+                                <a class="nav-link" href="{{ route('orders.shoppingCart') }}">Shoppping Cart
                                     <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                  <span class="badge">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }}</span>
                                 </a>

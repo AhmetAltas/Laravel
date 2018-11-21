@@ -26,10 +26,10 @@ class CategoryController extends Controller
      return view('categories.category', compact('categories'));   //
     }
 
-    public function getCategory($category)
+    public function getCategory($category_id)
     {
-     $products = Product::where('category_id', $category);
-     return view('categories.category-product', ['products' => $products]);
+    $products = Product::where('category_id', $category_id)->paginate(10);
+    return view('products.index', ['products' => $products]);
     }
 
     /**

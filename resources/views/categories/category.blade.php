@@ -15,7 +15,7 @@
                     <tbody>
                     @foreach($categories as $category)
                     <tr>
-                        <td><a href="{{route('products.getCategory', ['id' => $category->id])}}">{{$category->name}}</a></td>
+                        <td><a href="{{route('orders.getCategory', ['id' => $category->id])}}">{{$category->name}}</a></td>
                             </form>
                         </td>
                     </tr>

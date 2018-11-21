@@ -9,16 +9,16 @@
         <div class="row">
             <div class="container">
                 <ul class="list-group">
-                    @foreach($items as $item)
+                    @foreach($products as $product)
                             <li class="list-group-item">
-                                <span class="badge">{{ $item['qty'] }}</span>
-                                <strong>{{ $item['item']['name'] }}</strong>
-                                <span class="label label-success">€{{ $item['price'] }}</span>
+                                <span class="badge">{{ $product['qty'] }}</span>
+                                <strong>{{ $product['product']['name'] }}</strong>
+                                <span class="label label-success">€{{ $product['price'] }}</span>
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary btn-xs dropdown-toogle" data-toggle="dropdown">Bewerken <span class="caret"></span></button>
                                     <ul class="dropdown-menu">
-                                        <li><a href="{{route('products.reduceByOne', ['id' => $item['item']['id']])}}">Reduce by 1</a></li>
-                                        <li><a href="{{route('products.removeItem', ['id' => $item['item']['id']])}}">Reduce All</a></li>
+                                        <li><a href="{{route('orders.reduceByOne', ['id' => $product['product']['id']])}}">Reduce by 1</a></li>
+                                        <li><a href="{{route('orders.removeProduct', ['id' => $product['product']['id']])}}">Reduce All</a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -43,7 +43,7 @@
     @else
         <div class="row">
             <div class="container">
-                <h2>No Items in Cart!</h2>
+                <h2>No Products in Cart!</h2>
             </div>
         </div>
     @endif

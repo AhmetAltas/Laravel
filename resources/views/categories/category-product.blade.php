@@ -11,14 +11,10 @@
                         <div class="alert alert-success" role="alert">
                             <ul>
                             @foreach($products as $product)
-                                <li class="listing">{{$product->name}}</li>
-                                
+                                <li class="listing">{{$product->name}}</li>    
                             @endforeach
                             </ul>
-
-
                         </div>
-
                     Categories
                 </div>
             </div>

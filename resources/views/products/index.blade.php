@@ -41,7 +41,7 @@
                 <td>{{ $product->name }}</td>
                 <td>€{{ $product->price}}</td>                
                 <td><a class="btn btn-success" href="{{route('products.getArticle', ['id' => $product->id])}}" role="button">View</a></td>
-                <td><a href="{{route('products.addToCart', ['id' => $product->id])}}" role="button">Add</a></td>
+                <td><a href="{{route('orders.addToCart', ['id' => $product->id])}}" role="button">Add</a></td>
                 <!--<td>
                     <form action="#" method="post">
                         @csrf
