@@ -13,39 +13,24 @@ use Session;
 
 class OrderController extends Controller
 {
-    public function getAddToCart(Request $request, $id)
-    {
-        $product = Product::find($id);
-        $oldCart = Session::has('cart') ? Session::get('cart') : null;
-        $cart = new Cart($oldCart);
-        $cart->add($product, $id);
-        $request->session()->put('cart', $cart);
+    public function getAddToCart(Request $request, Product $product)
+    {   
+        $cart = new Cart();
+        $cart->add($product, $cart);
         return redirect()->route('products.index');
     }
 
-    public function reduceByOne($id)
+    public function reduceByOne(Product $product)
     {
-        $oldCart = Session::has('cart') ? Session::get('cart') : null;
-        $cart = new Cart($oldCart);
-        $cart->reduceByOne($id);
-        if (count($cart->products) > 0) {
-            Session::put('cart', $cart);
-        } else {
-            Session::forget('cart');
-        }
+        $cart = new Cart();
+        $cart->reduceByOne($product, $cart);
         return redirect()->route('orders.shoppingCart');
     }
 
-    public function removeProduct($id)
+    public function removeProduct(Product $product)
     {
-        $oldCart = Session::has('cart') ? Session::get('cart') : null;
-        $cart = new Cart($oldCart);
-        $cart->removeProduct($id);
-        if (count($cart->products) > 0) {
-            Session::put('cart', $cart);
-        } else {
-            Session::forget('cart');
-        }
+        $cart = new Cart();
+        $cart->removeProduct($product, $cart);
         return redirect()->route('orders.shoppingCart');
     }
 
@@ -54,8 +39,7 @@ class OrderController extends Controller
         if (!Session::has('cart')) {
             return view('shop.shopping-cart');
         }
-        $oldCart = Session::get('cart');
-        $cart = new Cart($oldCart);
+        $cart = new Cart();
         return view('shop.shopping-cart', ['products' => $cart->products, 'totalPrice' => $cart->totalPrice]);
     }
 
@@ -64,8 +48,7 @@ class OrderController extends Controller
         if (!Session::has('cart')) {
             return redirect()->route('shop.shoppingCart');
         }
-        $oldCart = Session::get('cart');
-        $cart = new Cart($oldCart);
+        $cart = new Cart();
         try {
             $order = new Order();
             $order->cart = serialize($cart);
